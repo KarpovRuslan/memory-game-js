@@ -1,38 +1,116 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: baseline;
+  border: 1px solid red;
+  
+}
+
+.difficulty {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 30px;
+  padding-top: 80px;
+  border: 1px solid red;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.buttonBlock {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-easy {
+  margin-bottom: 10px;
+}
+
+.btn-easy:hover,
+.btn-easy:focus {
+  background-color: green;
+}
+
+.btn-medium {
+  margin-bottom: 10px;
+}
+
+.btn-easy.active {
+  background-color: green;
+}
+
+.btn-medium.active {
+  background-color: rgb(244, 131, 2);
+}
+
+.btn-hard.active {
+  background-color: red;
+}
+
+
+.btn-medium:hover,
+.btn-medium:focus {
+  background-color: rgb(244, 131, 2);
+}
+
+.btn-hard:hover,
+.btn-hard:focus {
+  background-color: red;
+}
+
+.Board {
+  max-width: 860px;
+  margin: auto 60px;
+  border: 1px solid red;
+}
+
+button {
+  background: none;
+  border: 3px solid beige;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: beige;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1em;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: 600ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover,
+:focus {
+  background-color: blueviolet;
+}
+
+/* .card-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-gap: 20px;
+  
+} */
+
+.card-grid-2 {
+  margin-top: 30px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 2fr 2fr;
+}
+
+.card-grid-4 {
+  margin-top: 30px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card-grid-6 {
+  margin-top: 30px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
