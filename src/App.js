@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import "./App.css";
 import SingleCard from "./components/SingleCard";
 import ButtonBlock from "./components/ButtonBlock/ButtonBlock";
 
 const cardImages = [
-  { src: "/image/bird.png", matched: false },
-  { src: "/image/cat.png", matched: false },
-  { src: "/image/lion.png", matched: false },
   { src: "/image/monkey.png", matched: false },
+  { src: "/image/rabbit.png", matched: false },
+  { src: "/image/owl.png", matched: false },
+  { src: "/image/lion.png", matched: false },
+  { src: "/image/fox.png", matched: false },
+  { src: "/image/wolf.png", matched: false },
   { src: "/image/bird.png", matched: false },
-  { src: "/image/bird.png", matched: false },
-  { src: "/image/bird.png", matched: false },
-  { src: "/image/bird.png", matched: false },
+  { src: "/image/mouse.png", matched: false },
+  { src: "/image/cat.png", matched: false },
+  { src: "/image/capibara.png", matched: false },
 ];
 
 function App() {
@@ -85,16 +88,16 @@ function App() {
   
     switch (difficulty) {
       case 'easy':
-        numberOfCards = 2;
+        numberOfCards = 3;
         break;
       case 'medium':
-        numberOfCards = 4;
-        break;
-      case 'hard':
         numberOfCards = 6;
         break;
+      case 'hard':
+        numberOfCards = 9;
+        break;
       default:
-        numberOfCards = 2; 
+        numberOfCards = 6; 
     }
   
     setActiveBtn(difficulty);
@@ -108,10 +111,10 @@ function App() {
 
   const calculateGridClass = () => {
     const numCards = cards.length;
-    console.log(numCards);
-    if (numCards === 4) {
-      return "card-grid-2";
-    } else if (numCards === 8) {
+
+    if (numCards === 6) {
+      return "card-grid-3";
+    } else if (numCards === 12) {
       return "card-grid-4";
     } else {
       return "card-grid-6";

@@ -17,7 +17,6 @@
   justify-content: center;
   flex-direction: column;
   margin-bottom: 50px;
-  
 }
 
 .btn-easy {
@@ -57,7 +56,6 @@
 }
 
 .Board {
-  max-width: 900px;
   margin: auto 0px;
 }
 
@@ -82,25 +80,25 @@ button:hover,
   background-color: blueviolet;
 }
 
-.card-grid-2 {
-  margin-top: 30px;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 2fr 2fr;
-}
-
-.card-grid-4 {
+.card-grid-3 {
   margin-top: 30px;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.card-grid-6 {
+.card-grid-4 {
   margin-top: 30px;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card-grid-6 {
+  margin-top: 30px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .popup {
