@@ -21,19 +21,26 @@ function App() {
   const [choiceSecond, setChoiceSecond] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [activeBtn, setActiveBtn] = useState("medium");
+  const [allMatched, setAllMatched] = useState(false);
+  const [countdown, setCountdown] = useState(3);
+
+  useEffect(() => {
+    handleGameStart(activeBtn);
+  }, []);
 
   useEffect(() => {
     if (choiceFirst && choiceSecond) {
       setDisabled(true);
       if (choiceFirst.src === choiceSecond.src) {
         setCards((prev) => {
-          return prev.map((card) => {
-            if (card.src === choiceFirst.src) {
-              return { ...card, matched: true };
-            } else {
-              return card;
-            }
-          });
+          const updatedCards = prev.map((card) =>
+          card.src === choiceFirst.src ? { ...card, matched: true } : card
+          );
+
+          const isAllMatched = updatedCards.every((card) => card.matched);
+          setAllMatched(isAllMatched);
+
+          return updatedCards;
         });
         resetTurns();
       } else {
@@ -43,19 +50,23 @@ function App() {
   }, [choiceFirst, choiceSecond]);
 
   useEffect(() => {
-    handleGameStart(activeBtn);
-  }, [activeBtn]);
+    if (allMatched){
+      const timeoutId = setTimeout(() => {
+        setCountdown(3);
+        setAllMatched(false);
+        handleGameStart(activeBtn);
+      }, 3000);
 
-  // const shuffleCards = () => {
-  //   const shuffledCards = [...cardImages, ...cardImages]
-  //     .sort(() => Math.random() - 0.5)
-  //     .map((card) => ({ ...card, id: Math.random() }));
+      const countdownIntervalId = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
 
-  //   setChoiceFirst(null);
-  //   setChoiceSecond(null);
-  //   setCards(shuffledCards);
-  //   setTurns(0);
-  // };
+      return () => {
+        clearTimeout(timeoutId);
+        clearInterval(countdownIntervalId);
+      };
+    }
+  }, [allMatched, activeBtn]);
 
   const handleChoice = (card) => {
     if (card.id === choiceFirst?.id) return;
@@ -135,7 +146,12 @@ function App() {
             />
           ))}
         </div>
-        <p>Turns: {turns}</p>
+        {allMatched && (
+          <div className="popup">
+            <p className="popup-text">Finished with {turns} turns</p>
+            <p className="timer">New Game will begin in {countdown} seconds </p>
+          </div>
+        )}
       </div>
     </section>
   );

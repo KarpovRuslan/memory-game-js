@@ -3,14 +3,28 @@ import {
   AiOutlineRight,
   AiOutlineArrowRight,
 } from "react-icons/ai";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ButtonBlock = ({ shuffleCards, handleDifficultyClick, activeBtn }) => {
+  const showToast = (message) => {
+    toast.info(message, {
+      position: "top-right",
+      autoClose: 1000, 
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "dark",
+    });
+  };
+
   return (
     <>
       <div className="buttonBlock">
         <button
           className={`btn-easy ${activeBtn === 'easy' ? 'active' : ''}`}
-          onClick={() => handleDifficultyClick("easy")}
+          onClick={() => {handleDifficultyClick("easy"); ; showToast("Easy level chosen")}}
         >
           <AiOutlineLeft />
           Easy
@@ -18,7 +32,7 @@ const ButtonBlock = ({ shuffleCards, handleDifficultyClick, activeBtn }) => {
         </button>
         <button
           className={`btn-medium ${activeBtn === 'medium' ? 'active' : ''}`}
-          onClick={() => handleDifficultyClick("medium")}
+          onClick={() => {handleDifficultyClick("medium"); showToast("Medium level chosen")}}
         >
           <AiOutlineLeft />
           Medium
@@ -26,7 +40,7 @@ const ButtonBlock = ({ shuffleCards, handleDifficultyClick, activeBtn }) => {
         </button>
         <button
           className={`btn-hard ${activeBtn === 'hard' ? 'active' : ''}`}
-          onClick={() => handleDifficultyClick("hard")}
+          onClick={() =>{ handleDifficultyClick("hard"); ; showToast("Hard level chosen")}}
         >
           <AiOutlineLeft />
           Hard
@@ -37,6 +51,7 @@ const ButtonBlock = ({ shuffleCards, handleDifficultyClick, activeBtn }) => {
         Start Game
         <AiOutlineArrowRight />
       </button>
+      <ToastContainer />
     </>
   );
 };
