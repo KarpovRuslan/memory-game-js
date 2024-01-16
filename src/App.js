@@ -43,19 +43,19 @@ function App() {
   }, [choiceFirst, choiceSecond]);
 
   useEffect(() => {
-    shuffleCards();
-  }, []);
+    handleGameStart(activeBtn);
+  }, [activeBtn]);
 
-  const shuffleCards = () => {
-    const shuffledCards = [...cardImages, ...cardImages]
-      .sort(() => Math.random() - 0.5)
-      .map((card) => ({ ...card, id: Math.random() }));
+  // const shuffleCards = () => {
+  //   const shuffledCards = [...cardImages, ...cardImages]
+  //     .sort(() => Math.random() - 0.5)
+  //     .map((card) => ({ ...card, id: Math.random() }));
 
-    setChoiceFirst(null);
-    setChoiceSecond(null);
-    setCards(shuffledCards);
-    setTurns(0);
-  };
+  //   setChoiceFirst(null);
+  //   setChoiceSecond(null);
+  //   setCards(shuffledCards);
+  //   setTurns(0);
+  // };
 
   const handleChoice = (card) => {
     if (card.id === choiceFirst?.id) return;
@@ -69,7 +69,7 @@ function App() {
     setDisabled(false);
   };
 
-  const handleDifficultyClick = (difficulty) => {
+  const handleGameStart = (difficulty) => {
     let numberOfCards;
   
     switch (difficulty) {
@@ -112,8 +112,8 @@ function App() {
       <div className="difficulty">
         <p>Select your Difficulty</p>
         <ButtonBlock
-          shuffleCards={shuffleCards}
-          handleDifficultyClick={handleDifficultyClick}
+          shuffleCards={() => handleGameStart(activeBtn)}
+          handleDifficultyClick={handleGameStart}
           activeBtn={activeBtn}
         />
       </div>
@@ -131,6 +131,7 @@ function App() {
                 card === choiceFirst || card === choiceSecond || card.matched
               }
               disabled={disabled}
+              activeBtn={activeBtn}
             />
           ))}
         </div>

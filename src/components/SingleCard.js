@@ -1,13 +1,13 @@
 import "./SingleCard.css";
 
-function SingleCard({ card, handleChoice, flipped, disabled }) {
+function SingleCard({ card, handleChoice, flipped, disabled, activeBtn }) {
   const handleClick = () => {
     if (!disabled) {
       handleChoice(card);
     }
   };
   return (
-    <div className="card">
+    <div className={`card ${activeBtn==='medium' ? "card" : activeBtn==='easy' ? 'card-easy' : 'card-hard' }`}>
       <div className={flipped ? "flipped" : ""}>
         <img className="frontImage" src={card.src} alt="card front" />
         <img
